@@ -7,10 +7,19 @@ public class Usuario {
 	
 	public Usuario() {}
 	
-	public Usuario(String patente, int numTelefono) {
+	public Usuario(String patente, int numTelefono, Zona ubicacion) {
 		this.patente = patente;
-		this.celular = new Celular(numTelefono);
+		this.celular = new Celular(numTelefono, ubicacion);
 	}
 	
 	
 }
+
+
+
+
+
+
+
+
+

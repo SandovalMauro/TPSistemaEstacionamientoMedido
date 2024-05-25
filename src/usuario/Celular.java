@@ -1,16 +1,23 @@
 package usuario;
 
 public class Celular {
-     public int numero;
+     private int numero;
      private AppUsuario appUsuario;
+     private Zona ubicacion; 
      
-     protected Celular() {}
+     private Celular() {}
      
-     protected Celular(int num) {
+     protected Celular(int num, Zona ubicacion) {
     	 this.numero = num;
-    	 this.appUsuario = new AppUsuario();
+    	 this.appUsuario = new AppUsuario(/*Que necesita?*/); 
+    	 this.ubicacion = ubicacion;
      }
      
-     public int numero() { return this.numero; }
+     public int numero() {  return this.numero;}
+     protected ubicacion(){ return this.gps.ubicacion();}
+     
+     
      
 }
+
+

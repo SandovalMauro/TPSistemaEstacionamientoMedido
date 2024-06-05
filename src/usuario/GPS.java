@@ -1,5 +1,6 @@
 package usuario;
 
+import sem.Zona;
 
 // DELETE? 
 public class GPS {	
@@ -8,12 +9,12 @@ public class GPS {
 	private GPS() {}
 	
 	protected GPS(Zona _ubicacion) {
-		this.ubicacion = _ubicacion
+		this.ubicacion = _ubicacion;
 	}
 	
-	protected ubicacion() {return this.ubicacion}
-	protected ubicacion(Zona nuevaUbicacion) {
-		this.ubicacion = nuevaUbicacion
+	protected Zona ubicacion() {return this.ubicacion;}
+	protected void ubicacion(Zona nuevaUbicacion) {
+		this.ubicacion = nuevaUbicacion;
 	}
 	
 	

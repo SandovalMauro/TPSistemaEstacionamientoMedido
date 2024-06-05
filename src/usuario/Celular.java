@@ -1,5 +1,8 @@
 package usuario;
 
+import appUsuario.AppUsuario;
+import sem.Zona;
+
 public class Celular {
      private int numero;
      private AppUsuario appUsuario;
@@ -14,9 +17,10 @@ public class Celular {
      }
      
      public int numero() {  return this.numero;}
-     protected ubicacion(){ return this.gps.ubicacion();}
+     protected Zona ubicacion(){ return this.ubicacion();}
      
      
+   
      
 }
 

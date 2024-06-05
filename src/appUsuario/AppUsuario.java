@@ -1,11 +1,13 @@
 package appUsuario;
 
 import sem.SEM;
+import usuario.Celular;
 
 public class AppUsuario implements MovementSensor {
 	private double saldo;
 	private SEM sem;
 	private ModoApp modo;
+	private Celular celular;
 
 	public double saldo() {
 		return saldo;
@@ -14,10 +16,11 @@ public class AppUsuario implements MovementSensor {
 	protected AppUsuario() {
 	}
 
-	protected AppUsuario(SEM sem) {
+	protected AppUsuario(SEM sem, Celular celular) {
 		this.saldo = 0;
 		this.sem = sem;
 		this.modo = new ModoManual();
+		this.celular = celular;
 	}
 	
 	public void pasarAAutomatico(){this.modo = new ModoAutomatico();}
@@ -27,8 +30,8 @@ public class AppUsuario implements MovementSensor {
 		this.sem.iniciarEstacionamiento(patente);
 	}
 
-	public void finalizarEstacionamiento(int num) {
-		this.sem.finalizarEstacionamiento(num);
+	public void finalizarEstacionamiento() {
+		this.sem.finalizarEstacionamiento(celular.numero());
 	}
 
 	private void duracion() {

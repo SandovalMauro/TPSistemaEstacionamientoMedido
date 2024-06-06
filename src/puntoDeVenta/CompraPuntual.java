@@ -10,5 +10,7 @@ public class CompraPuntual extends Compra{
 		// TODO Auto-generated constructor stub
 		this.hsCompradas = hsCompradas;
 	}
+	
+
 
 }

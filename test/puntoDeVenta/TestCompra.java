@@ -2,32 +2,44 @@ package puntoDeVenta;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import sem.SEM;
+import usuario.Usuario;
+
 
 class TestCompra {
 	private PuntoDeVenta punto;
 	private LocalDate fecha;
-	private Compra compra1;
+	private SEM sem;
+	private Recarga compra1;
+	private Usuario usuario;
 	private Compra compra2;
 	
 	@BeforeEach
 	void SetUp() throws Exception{
-		punto = mock(PuntoDeVenta.class);
-		fecha = mock(LocalDate.class);
-		compra1 = new Compra(punto,fecha);
-		compra2 = new Compra(punto,fecha);
 		
+		fecha = mock(LocalDate.class);
+		sem = new SEM();//mock(SEM.class);
+		usuario = mock(Usuario.class);
+		compra1 = mock(Recarga.class);
+		punto = new PuntoDeVenta(sem);
+
 	}
 
 	@Test
 	void compras() {
-		assertEquals(1,compra1.numControl());
-		assertEquals(2,compra2.numControl());
+		punto.cargarCredito(usuario, 100, fecha);
+		punto.iniciarEstacionamiento(usuario, 0, fecha);
+		assertEquals(2,sem.compras().size());
+		assertEquals(1,sem.estacionados().size());
+//		when(compra1.numControl()).thenReturn(1);
+//		assertEquals(1,compra1.numControl());
 	}
-
 }

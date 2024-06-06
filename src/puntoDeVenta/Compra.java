@@ -18,5 +18,5 @@ public class Compra {
 	public int numControl() {
 		return this.numControl;
 	}
-	
+
 }

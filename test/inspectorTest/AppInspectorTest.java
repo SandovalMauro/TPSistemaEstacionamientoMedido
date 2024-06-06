@@ -7,17 +7,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import inspector.AppInspector;
+import inspector.Infraccion;
+import inspector.Inspector;
 import sem.SEM;
 
 public class AppInspectorTest {
 
     private SEM sem;
     private AppInspector appInspector;
+    private Infraccion infraccion;
+    private Inspector inspector;
 
     @BeforeEach
     public void setUp() {
         sem = mock(SEM.class); 
-        appInspector = new AppInspector(sem);
+        infraccion = mock(Infraccion.class);
+        inspector = mock(Inspector.class);
+        appInspector = new AppInspector(sem, inspector);
     }
 
     @Test
@@ -32,7 +38,7 @@ public class AppInspectorTest {
     public void testAltaDeInfraccion() throws Exception {
     	appInspector.altaDeInfraccion("abc123");
 
-        verify(sem).generarInfraccion("abc123");
+        verify(sem).agregarInfraccion(infraccion);
     }
 }
 

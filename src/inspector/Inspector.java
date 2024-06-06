@@ -14,9 +14,9 @@ public class Inspector {
 	}
 	
 	// Metodos
-	public void tieneEstacionamientoValido(String Patente) {
-		if(!this.getApp().tieneEstacionamientoVigente(Patente)) {
-			this.getApp().altaDeInfraccion(Patente);
+	public void tieneEstacionamientoValido(String patente) {
+		if(!this.getApp().tieneEstacionamientoVigente(patente)) {
+			this.getApp().altaDeInfraccion(patente);
 		}
 	}
 	
@@ -25,23 +25,12 @@ public class Inspector {
 		return nombreInspector;
 	}
 
-	public void setNombreInspector(String nombreInspector) {
-		this.nombreInspector = nombreInspector;
-	}
-
 	public int getIDinspector() {
 		return IDinspector;
-	}
-
-	public void setIDinspector(int iDinspector) {
-		IDinspector = iDinspector;
 	}
 
 	public AppInspector getApp() {
 		return app;
 	}
 
-	public void setApp(AppInspector app) {
-		this.app = app;
-	}
 }

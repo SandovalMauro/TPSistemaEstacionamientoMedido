@@ -1,5 +1,7 @@
 package sem;
 
+import inspector.Infraccion;
+
 public class SEM {
 
 	public boolean estaVigente(String patente) {
@@ -7,7 +9,7 @@ public class SEM {
 		return false;
 	}
 
-	public void generarInfraccion(String patente) {
+	public void agregarInfraccion(Infraccion infraccion) {
 		// TODO Auto-generated method stub
 		
 	}

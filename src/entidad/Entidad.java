@@ -4,15 +4,16 @@ public class Entidad implements Observador {
 
     @Override
     public void actualizar(Evento e) {
-        // lógica para manejar las actualizaciones según el evento
+    	// Mensaje para el inicio del estacionamiento.
         if (e.getTipo().equals("InicioEstacionamiento")) {
-            // manejar el inicio del estacionamiento
             System.out.println("Estacionamiento iniciado.");
+            
+        // Mensaje para el finalizado del estacionamiento.
         } else if (e.getTipo().equals("FinEstacionamiento")) {
-            // manejar el fin del estacionamiento
             System.out.println("Estacionamiento finalizado.");
+            
+        // Mensaje para las recargas de crédito.
         } else if (e.getTipo().equals("RecargaCredito")) {
-            // manejar la recarga de crédito
             System.out.println("Credito recargado.");
         }
     }

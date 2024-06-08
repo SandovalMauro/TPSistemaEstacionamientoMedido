@@ -1,6 +1,4 @@
 package appUsuario;
-
-import sem.RegistroEstacionamiento;
 import sem.SEM;
 
 
@@ -20,10 +18,11 @@ public class AppUsuario implements MovementSensor {
 		this.modo = new ModoManual();
 		this.numero = numero;
 		this.patente = patente;
-		this.flagDriving = false;
+		this.flagDriving = true;
 		this.sensorActivo = false;
 	}
 
+	
 	public double saldo() { return this.saldo; }
 	
 	public void cargarSaldo(double cantidad) { this.saldo += cantidad; }
@@ -54,8 +53,15 @@ public class AppUsuario implements MovementSensor {
 	}	}
 
 	public void setModoAutomatico() { this.modo = new ModoAutomatico(); this.sensorActivo = true ;}
-	public void     setModoManual() { this.modo = new ModoManual();     this.sensorActivo = false;}	
-	
-	
+	public void     setModoManual() { this.modo = new ModoManual();     this.sensorActivo = false;}
+
+
+	public boolean isFlagDriving() {
+		return flagDriving;
+	}
+
+	public boolean isSensorActivo() {
+		return sensorActivo;
+	}
 	
 }

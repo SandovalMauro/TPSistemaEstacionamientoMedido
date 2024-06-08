@@ -6,23 +6,33 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import sem.SEM;
+
+import static org.mockito.Mockito.*
+;
 class AppUsuarioTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
+		SEM sem = mock(SEM.class);
+		AppUsuario appT = new AppUsuario(sem, 1167648255, "ABC 123");
 	}
 
 	@Test
 	void testAppUsuario() {
-		fail("Not yet implemented");
+		assertTrue(this.appT.isFlagDriving());
+		assertFalse(this.appT.isSensorActivo());
+	
 	}
 
 	@Test
 	void testSaldo() {
+		when(this.sem.nuevoEstacionamiento(1167648255, "ABC 123"))
 		fail("Not yet implemented");
 	}
 

@@ -1,7 +1,8 @@
 package appUsuario;
 
+import sem.RegistroEstacionamiento;
 import sem.SEM;
-import usuario.Celular;
+
 
 public class AppUsuario implements MovementSensor {
 	private double saldo;
@@ -11,6 +12,7 @@ public class AppUsuario implements MovementSensor {
 	private String patente;
 	private boolean flagDriving;
 	private boolean sensorActivo;
+
 
 	protected AppUsuario(SEM sem, int numero, String patente) {
 		this.saldo = 0;
@@ -29,13 +31,12 @@ public class AppUsuario implements MovementSensor {
 	public void pasarAAutomatico(){this.modo = new ModoAutomatico();}
 	public void pasarAManual(){this.modo = new ModoManual();}	
 	
-	public void iniciarEstacionamiento() {
-		// CAMBIAR PARA QUE SE GENERE ACA Y SE LE MANDE AL SEM
+	public void iniciarEstacionamiento() {;
+		this.sem.nuevoEstacionamiento(this.numero, this.patente);
 	}
 
 	public void finalizarEstacionamiento() {
-		//this.sem.finalizarEstacionamiento(this.numero);
-		// CAMBIAR PARA QUE SE GENERE ACA Y SE LE MANDE AL SEM
+		this.sem.finalizarEstacionamiento(this.numero);
 	}
 
 	private void duracion() { /*???????????????????????????????????????????*/}

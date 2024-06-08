@@ -7,4 +7,7 @@ public class SEM {
 		
 	}
 
+	public void nuevoEstacionamiento(int numero, String patente){
+		
+	}
 }

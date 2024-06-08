@@ -15,8 +15,10 @@ public class PuntoDeVenta {
 	}
 	
 	public void cargarCredito(Usuario usuario ,double credito, LocalDate fecha) {
-		int celular = 0; // usuario.celular();
+		int celular = 0; // usuario.celular.nroCelular();
 		this.sem.agregarCompra(new Recarga(this, fecha,credito, celular));
+		//aumentar credito al usuario
+		//usuario.aumentarCredito(credito);
 	}
 	
 	public void iniciarEstacionamiento(Usuario usuario, int cantidadHs, LocalDate fechaInicio) {

@@ -19,4 +19,8 @@ public class Compra {
 		return this.numControl;
 	}
 
+	public LocalDate getFechaYHora() {
+		return fechaYHora;
+	}
+
 }

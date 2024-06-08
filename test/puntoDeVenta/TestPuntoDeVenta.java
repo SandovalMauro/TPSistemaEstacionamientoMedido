@@ -14,7 +14,7 @@ import sem.SEM;
 import usuario.Usuario;
 
 
-class TestCompra {
+class TestPuntoDeVenta {
 	private PuntoDeVenta punto;
 	private LocalDate fecha;
 	private SEM sem;
@@ -34,12 +34,15 @@ class TestCompra {
 	}
 
 	@Test
-	void compras() {
+	void testCargaCredito() {
 		punto.cargarCredito(usuario, 100, fecha);
+		assertEquals(1,sem.compras().size());
+	}
+	
+	@Test
+	void testEstacionamiento() {
 		punto.iniciarEstacionamiento(usuario, 0, fecha);
-		assertEquals(2,sem.compras().size());
+		assertEquals(1,sem.compras().size());
 		assertEquals(1,sem.estacionados().size());
-//		when(compra1.numControl()).thenReturn(1);
-//		assertEquals(1,compra1.numControl());
 	}
 }

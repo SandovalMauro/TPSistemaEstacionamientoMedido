@@ -1,49 +1,52 @@
 package appUsuario;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import appUsuario.*;
+
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import sem.SEM;
 
 
 
 class AppUsuarioTest {
 
-
+	SEM sem;
+	AppUsuario appT;
+	
 	@BeforeEach
-	public void setUp(){
-		SEM sem = mock(SEM.class);
-		AppUsuario appT = new AppUsuario(sem, 1167648255, "ABC 123");
+	public void setUp() {
+		sem = mock(SEM.class);
+		appT = new AppUsuario(sem, 1167648255, "ABC 123");
 	}
 
 	@Test
-	void testAppUsuarios() {
+	void testAppUsuariohfytggls() {
 		assertTrue(appT.isFlagDriving());
 		assertFalse(appT.isSensorActivo());
 		appT.driving(); 
 		assertTrue(appT.isFlagDriving());
 		appT.walking();
-		assertTrue(this.appT.isFlagDriving());
+		assertTrue(appT.isFlagDriving());
 	
-		verifyZeroInteractions(this.appT.getModo());
+		verifyZeroInteractions(appT.getModo());
 		
-		this.appT.setModoAutomatico();
-		
-		
-		assertTrue(this.appT.isFlagDriving());
-		assertTrue(this.appT.isSensorActivo()); // Se enciende el sensor
-		this.appT.walking();
-		verify(this.appT.getModo(), times(1)).this.appT.getModo().walking(); // el mensaje Walking fue enviado una vez
-		assertFalse(this.appT.isFlagDriving()); // Se detecta que se esta caminando
-		
-		this.appT.walking();
-		verify(this.appT.getModo(), times(1)).this.appT.getModo().walking(); // el mensaje Walking no volvio a ser llamado		
-		
-		this.appT.driving();
-		assertTrue(this.appT.isFlagDriving());
+		appT.setModoAutomatico();
 		
 		
+		assertTrue(appT.isFlagDriving());
+		assertTrue(appT.isSensorActivo()); // Se enciende el sensor
+		appT.walking();
+		verify(appT.getModo(), times(1)).appT.getModo().walking(); // el mensaje Walking fue enviado una vez
+		assertFalse(appT.isFlagDriving()); // Se detecta que se esta caminando
+		
+		appT.walking();
+		verify(appT.getModo(), times(1)).appT.getModo().walking(); // el mensaje Walking no volvio a ser llamado		
+		
+		appT.driving();
+		assertTrue(appT.isFlagDriving());
 		
 	}
 

@@ -1,6 +1,6 @@
-package appUsuario;
-
 import static org.junit.jupiter.api.Assertions.*;
+import appUsuario.*;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,30 @@ class AppUsuarioTest {
 	void testAppUsuario() {
 		assertTrue(this.appT.isFlagDriving());
 		assertFalse(this.appT.isSensorActivo());
+		this.appT.driving(); 
+		assertTrue(this.appT.isFlagDriving());
+		this.appT.walking();
+		assertTrue(this.appT.isFlagDriving());
 	
+		verifyZeroInteractions(this.appT.getModo());
+		
+		this.appT.setModoAutomatico();
+		
+		
+		assertTrue(this.appT.isFlagDriving());
+		assertTrue(this.appT.isSensorActivo()); // Se enciende el sensor
+		this.appT.walking();
+		verify(this.appT.getModo(), times(1)).this.appT.getModo().walking(); // el mensaje Walking fue enviado una vez
+		assertFalse(this.appT.isFlagDriving()); // Se detecta que se esta caminando
+		
+		this.appT.walking();
+		verify(this.appT.getModo(), times(1)).this.appT.getModo().walking(); // el mensaje Walking no volvio a ser llamado		
+		
+		this.appT.driving();
+		assertTrue(this.appT.isFlagDriving());
+		
+		
+		
 	}
 
 	@Test

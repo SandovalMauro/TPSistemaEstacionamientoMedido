@@ -12,7 +12,7 @@ public class AppUsuario implements MovementSensor {
 	private boolean sensorActivo;
 
 
-	protected AppUsuario(SEM sem, int numero, String patente) {
+	public AppUsuario(SEM sem, int numero, String patente) {
 		this.saldo = 0;
 		this.sem = sem;
 		this.modo = new ModoManual();
@@ -56,12 +56,8 @@ public class AppUsuario implements MovementSensor {
 	public void     setModoManual() { this.modo = new ModoManual();     this.sensorActivo = false;}
 
 
-	public boolean isFlagDriving() {
-		return flagDriving;
-	}
-
-	public boolean isSensorActivo() {
-		return sensorActivo;
-	}
+	public boolean isFlagDriving() { return flagDriving;}
+	public boolean isSensorActivo() { return sensorActivo;}
+	public ModoApp getModo() {return modo;}
 	
 }

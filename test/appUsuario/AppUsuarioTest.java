@@ -1,35 +1,29 @@
-import static org.junit.jupiter.api.Assertions.*;
-import appUsuario.*;
-
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+package appUsuario;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import appUsuario.*;
 import sem.SEM;
 
-import static org.mockito.Mockito.*
-;
+
+
 class AppUsuarioTest {
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	public void setUp(){
 		SEM sem = mock(SEM.class);
 		AppUsuario appT = new AppUsuario(sem, 1167648255, "ABC 123");
 	}
 
 	@Test
-	void testAppUsuario() {
-		assertTrue(this.appT.isFlagDriving());
-		assertFalse(this.appT.isSensorActivo());
-		this.appT.driving(); 
-		assertTrue(this.appT.isFlagDriving());
-		this.appT.walking();
+	void testAppUsuarios() {
+		assertTrue(appT.isFlagDriving());
+		assertFalse(appT.isSensorActivo());
+		appT.driving(); 
+		assertTrue(appT.isFlagDriving());
+		appT.walking();
 		assertTrue(this.appT.isFlagDriving());
 	
 		verifyZeroInteractions(this.appT.getModo());

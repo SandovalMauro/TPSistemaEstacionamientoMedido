@@ -1,9 +1,10 @@
 package appUsuario;
 
-public class ModoApp {
+public abstract class ModoApp {
 
-	public void driving(AppUsuario app) {}
-	public void walking(AppUsuario app) {}
+	public void drivingMSG(AppUsuario app) {}
+	public void walkingMSG(AppUsuario app) {}
+	public abstract void sensor(AppUsuario app);
 	
 	
 }

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import appUsuario.AppUsuario;
 import sem.SEM;
 
 
@@ -18,7 +19,9 @@ class TestPuntoDeVenta {
 	private LocalDate fecha;
 	private SEM sem;
 	private Recarga compra1;
+
 	//private Usuario usuario;
+
 	private Compra compra2;
 	
 	@BeforeEach
@@ -27,6 +30,7 @@ class TestPuntoDeVenta {
 		fecha = mock(LocalDate.class);
 		sem = new SEM();//mock(SEM.class);
 		//usuario = mock(Usuario.class);
+
 		compra1 = mock(Recarga.class);
 		punto = new PuntoDeVenta(sem);
 

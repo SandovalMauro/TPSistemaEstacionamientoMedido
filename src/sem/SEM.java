@@ -1,12 +1,10 @@
 package sem;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
+import inspector.Infraccion;
+import java.util.ArrayList;
+import java.util.List;
 import puntoDeVenta.Compra;
-import usuario.Usuario;
 
 public class SEM {
 	
@@ -42,4 +40,15 @@ public class SEM {
 	public void nuevoEstacionamiento(int numero, String patente){
 		
 	}
+	
+	public boolean estaVigente(String patente) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void agregarInfraccion(Infraccion infraccion) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

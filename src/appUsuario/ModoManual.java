@@ -1,5 +1,7 @@
 package appUsuario;
 
-public class ModoManual {
+public class ModoManual extends ModoApp{
+	
+
 
 }

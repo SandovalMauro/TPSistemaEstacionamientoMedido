@@ -1,4 +1,7 @@
 package appUsuario;
+import java.time.LocalDateTime;
+
+import sem.RegistroEstacionamiento;
 import sem.SEM;
 
 
@@ -23,41 +26,57 @@ public class AppUsuario implements MovementSensor {
 	}
 
 	
+	
+	/*
+	 * Hacer el registro de estacionamiento en esta clase y enviarsela al SEM. 
+	 * 
+	 * 
+	 * */
+	
 	public double saldo() { return this.saldo; }
 	
 	public void cargarSaldo(double cantidad) { this.saldo += cantidad; }
 	
-	public void pasarAAutomatico(){this.modo = new ModoAutomatico();}
-	public void pasarAManual(){this.modo = new ModoManual();}	
 	
 	public void iniciarEstacionamiento() {;
-		this.sem.nuevoEstacionamiento(this.numero, this.patente);
+	    //Hacer el registro de estacionamiento en esta clase y enviarsela al SEM. 
+		this.sem.agregarEstacionamiento(new RegistroEstacionamiento(/*this.sem.getHoraActual(), this.calcularHoraFin(), this.patente*/));
+	//this.sem.nuevoEstacionamiento(this.numero, this.patente);    // IMPLEMENTAR !!!!!!
 	}
 
 	public void finalizarEstacionamiento() {
-		this.sem.finalizarEstacionamiento(this.numero);
+		this.sem.finalizarEstacionamiento(this.numero); // este queda igual.
 	}
 
-	private void duracion() { /*???????????????????????????????????????????*/}
+	private LocalDateTime calcularHoraFin() {
+		return null; /* VER iniciarEstacionamiento()*/}
 
 	@Override
 	public void driving() {
 		if (this.sensorActivo && !this.flagDriving) {
-			this.modo.driving(this); this.flagDriving = true;
+			this.modo.drivingMSG(this); this.flagDriving = true;
 	}   }
 
 	@Override
 	public void walking() {
 		if (this.sensorActivo && this.flagDriving) {
-			this.modo.walking(this); this.flagDriving = false;
+			this.modo.walkingMSG(this); this.flagDriving = false;
 	}	}
 
-	public void setModoAutomatico() { this.modo = new ModoAutomatico(); this.sensorActivo = true ;}
-	public void     setModoManual() { this.modo = new ModoManual();     this.sensorActivo = false;}
-
+	public void setModo(ModoApp modo) {
+			this.modo = modo;     
+			this.modo.sensor(this);
+		}
+	
 
 	public boolean isFlagDriving() { return flagDriving;}
-	public boolean isSensorActivo() { return sensorActivo;}
 	public ModoApp getModo() {return modo;}
+
+
+
+	public boolean isSensorActivo() { return sensorActivo;}
+	public void setSensorActivo(boolean sensorActivo) {
+		this.sensorActivo = sensorActivo;
+	}
 	
 }

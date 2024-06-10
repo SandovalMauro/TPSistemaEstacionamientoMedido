@@ -15,37 +15,58 @@ class AppUsuarioTest {
 
 	SEM sem;
 	AppUsuario appT;
+	ModoApp modoAutomatico;
+	ModoApp modoManual;
+	
+	
 	
 	@BeforeEach
 	public void setUp() {
 		sem = mock(SEM.class);
 		appT = new AppUsuario(sem, 1167648255, "ABC 123");
+		modoAutomatico = mock(ModoAutomatico.class);
+		modoManual =  mock(ModoManual.class);
 	}
-/*
+
 	@Test
-	void testAppUsuariohfytggls() {
+	void seEstaEnModoManualYNoSeHaceNada() {
+		appT.setModo(modoManual);
+		
 		assertTrue(appT.isFlagDriving());
 		assertFalse(appT.isSensorActivo());
 		appT.driving(); 
 		assertTrue(appT.isFlagDriving());
 		appT.walking();
 		assertTrue(appT.isFlagDriving());
-	
-		verifyZeroInteractions(appT.getModo());
+
+		//verify(appT, never()).getModo();
 		
-		appT.setModoAutomatico();
+		
+	}
+	
+	@Test 
+	void a() {
+		appT.setModo(modoAutomatico);
 		
 		assertTrue(appT.isFlagDriving());
-		assertTrue(appT.isSensorActivo()); // Se enciende el sensor
+		verify(modoAutomatico, times(1)).sensor(appT); 
+		appT.setSensorActivo(true);
+		assertTrue(appT.isSensorActivo()); // Se enciende el sensor 
+		
 		appT.walking();
-		verify(appT.getModo(), times(1)).appT.getModo().walking(); // el mensaje Walking fue enviado una vez
+		
+		verify(modoAutomatico, times(1)).walkingMSG(appT); // el mensaje Walking fue enviado una vez
 		assertFalse(appT.isFlagDriving()); // Se detecta que se esta caminando
 		
 		appT.walking();
-		verify(appT.getModo(), times(1)).appT.getModo().walking(); // el mensaje Walking no volvio a ser llamado		
+		verify(modoAutomatico, times(1)).walkingMSG(appT); // el mensaje Walking no volvio a ser llamado		
 		
 		appT.driving();
 		assertTrue(appT.isFlagDriving());
-	}*/
+		verify(modoAutomatico, times(1)).drivingMSG(appT);
+	}
 
+	
+	
+	
 }

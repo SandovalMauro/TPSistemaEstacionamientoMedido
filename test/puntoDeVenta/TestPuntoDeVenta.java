@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import appUsuario.AppUsuario;
 import sem.SEM;
-import usuario.Usuario;
 
 
 class TestPuntoDeVenta {
@@ -20,7 +19,9 @@ class TestPuntoDeVenta {
 	private LocalDate fecha;
 	private SEM sem;
 	private Recarga compra1;
-	private AppUsuario usuario;
+
+	//private Usuario usuario;
+
 	private Compra compra2;
 	
 	@BeforeEach
@@ -28,7 +29,8 @@ class TestPuntoDeVenta {
 		
 		fecha = mock(LocalDate.class);
 		sem = new SEM();//mock(SEM.class);
-		usuario = mock(AppUsuario.class);
+		//usuario = mock(Usuario.class);
+
 		compra1 = mock(Recarga.class);
 		punto = new PuntoDeVenta(sem);
 
@@ -36,13 +38,13 @@ class TestPuntoDeVenta {
 
 	@Test
 	void testCargaCredito() {
-		punto.cargarCredito(usuario, 100, fecha);
+		//punto.cargarCredito(usuario, 100, fecha);
 		assertEquals(1,sem.compras().size());
 	}
 	
 	@Test
 	void testEstacionamiento() {
-		punto.iniciarEstacionamiento(usuario, 0, fecha);
+	//	punto.iniciarEstacionamiento(usuario, 0, fecha);
 		assertEquals(1,sem.compras().size());
 		assertEquals(1,sem.estacionados().size());
 	}

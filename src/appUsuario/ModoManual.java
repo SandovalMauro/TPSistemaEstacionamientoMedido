@@ -1,5 +1,13 @@
 package appUsuario;
 
-public class ModoManual {
+public class ModoManual extends ModoApp{
+
+	@Override
+	public void sensor(AppUsuario app) {
+		app.setSensorActivo(false);
+		
+	}
 
 }
+
+

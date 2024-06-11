@@ -7,11 +7,10 @@ import puntoDeVenta.CompraPuntual;
 
 public class EstacionamientoCompraPuntual extends RegistroEstacionamiento{
 	private CompraPuntual compra;
-	private String patente;
 	
 	public EstacionamientoCompraPuntual(CompraPuntual compra, String patente) {
+		super(patente);
 		this.compra = compra;
-		this.patente = patente;
 	}
 
 	@Override
@@ -27,9 +26,9 @@ public class EstacionamientoCompraPuntual extends RegistroEstacionamiento{
 	}
 
 	@Override
-	public boolean estaVigente(LocalDateTime horaActual) {
+	public int getCelular() {
 		// TODO Auto-generated method stub
-		return horaActual.isAfter(this.horaIncio()) && horaActual.isBefore(this.horaFin());
+		return 0;
 	}
 
 }

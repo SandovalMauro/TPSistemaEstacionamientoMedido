@@ -1,7 +1,10 @@
 package puntoDeVenta;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+
 import appUsuario.AppUsuario;
+import sem.EstacionamientoCompraPuntual;
 import sem.RegistroEstacionamiento;
 import sem.SEM;
 
@@ -13,7 +16,7 @@ public class PuntoDeVenta {
 		this.sem = sem;
 	}
 
-	public void cargarCredito(/*Usuario usuario, */ double credito, LocalDate fecha) {
+	public void cargarCredito(/*Usuario usuario, */ double credito, LocalDateTime fecha) {
 
 		int celular = 0; // usuario.celular.nroCelular();
 		this.sem.agregarCompra(new Recarga(this, fecha,credito, celular));
@@ -22,11 +25,11 @@ public class PuntoDeVenta {
 	}
 	
 
-	public void iniciarEstacionamiento(/*Usuario usuario,*/ int cantidadHs, LocalDate fechaInicio) {
+	public void iniciarEstacionamiento(/*Usuario usuario,*/ int cantidadHs, LocalDateTime fechaInicio, String patente) {
 
-
-		this.sem.agregarCompra(new CompraPuntual(this,fechaInicio,cantidadHs));
-		this.sem.agregarEstacionamiento(new RegistroEstacionamiento()); // agregarle los parametros que necesite
+		CompraPuntual compraPuntual = new CompraPuntual(this,fechaInicio,cantidadHs);
+		this.sem.agregarCompra(compraPuntual);
+		this.sem.agregarEstacionamiento(new EstacionamientoCompraPuntual(compraPuntual, patente)); // agregarle los parametros que necesite
 	}
 	
 }

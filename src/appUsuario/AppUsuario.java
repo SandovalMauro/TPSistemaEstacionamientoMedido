@@ -80,4 +80,8 @@ public class AppUsuario implements MovementSensor {
 		this.sensorActivo = sensorActivo;
 	}
 	
+	public int getCelular() {
+		return this.numero;
+	}
+	
 }

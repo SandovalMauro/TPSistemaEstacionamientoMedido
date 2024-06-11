@@ -1,6 +1,7 @@
 package appUsuario;
 import java.time.LocalDateTime;
 
+import sem.EstacionamientoAppUsuario;
 import sem.RegistroEstacionamiento;
 import sem.SEM;
 
@@ -40,7 +41,7 @@ public class AppUsuario implements MovementSensor {
 	
 	public void iniciarEstacionamiento() {;
 	    //Hacer el registro de estacionamiento en esta clase y enviarsela al SEM. 
-		this.sem.agregarEstacionamiento(new RegistroEstacionamiento(/*this.sem.getHoraActual(), this.calcularHoraFin(), this.patente*/));
+		this.sem.agregarEstacionamiento(new EstacionamientoAppUsuario(this.sem.getHoraActual(), this.calcularHoraFin(), this.patente, this.numero));
 	//this.sem.nuevoEstacionamiento(this.numero, this.patente);    // IMPLEMENTAR !!!!!!
 	}
 

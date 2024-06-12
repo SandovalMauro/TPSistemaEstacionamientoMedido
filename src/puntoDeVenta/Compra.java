@@ -1,6 +1,8 @@
 package puntoDeVenta;
 
-import java.time.LocalDate;
+
+
+
 import java.time.LocalDateTime;
 
 public class Compra {
@@ -10,10 +12,11 @@ public class Compra {
 	private PuntoDeVenta punto;
 	private LocalDateTime fechaYHora;
 	
-	public Compra(PuntoDeVenta puntoDeVenta, LocalDateTime fechaInicio) {
+
+	public Compra(PuntoDeVenta puntoDeVenta, LocalDateTime fechaYHora) {
 		this.numControl = numeroActual++;
 		this.punto = puntoDeVenta;
-		this.fechaYHora = fechaInicio;
+		this.fechaYHora = fechaYHora;
 	}
 	
 	public int numControl() {
@@ -23,5 +26,4 @@ public class Compra {
 	public LocalDateTime getFechaYHora() {
 		return fechaYHora;
 	}
-
 }

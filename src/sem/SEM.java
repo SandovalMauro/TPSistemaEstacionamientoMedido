@@ -1,18 +1,22 @@
 package sem;
-
-
 import inspector.Infraccion;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import entidad.Evento;
+import entidad.Observador;
+import entidad.Sujeto;
+import inspector.Infraccion;
 import puntoDeVenta.Compra;
 
-public class SEM {
-	
+public class SEM implements Sujeto {
+	private List<Observador> observadores = new ArrayList<>();
 	private List<Compra> compras;
 	private List<RegistroEstacionamiento> estacionados;
-	public Object horaActual;
+
+
+	private LocalDateTime horaActual;
+
 	
 	public SEM() {
 		this.compras = new ArrayList<Compra>();
@@ -40,33 +44,68 @@ public class SEM {
 		
 	}
 
-	public void nuevoEstacionamiento(int numero, String patente){
-		
-	}
+
 	
 	public boolean estaVigente(String patente) {
 		// TODO Auto-generated method stub
+		RegistroEstacionamiento estacionamiento = this.buscarEstacionamiento(patente);
+		if(estacionamiento!=null) {
+			return estacionamiento.estaVigente(this.getHoraActual());
+		}
 		return false;
 	}
 
 	public void agregarInfraccion(Infraccion infraccion) {
-		// TODO Auto-generated method stub
 		
+		
+
 	}
 
-	public double getValorHora() {
-		// TODO Auto-generated method stub
-		return 40.00;
-	}
 
-	public LocalDateTime horaActual() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public double getValorHora() {return 40.00;}
+
 
 	public LocalDateTime horaCierreHoy() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public RegistroEstacionamiento buscarEstacionamiento(String patente) {
+		//VER elige la primera en aparecer creo que deberia ser la ultima en aparecer
+		// List<RegistroEstacionamiento> listaInvertida = new ArrayList<RegistroEstacionamiento>(this.estacionados);
+		//Collect.reverse(listaInvertida);
+		return this.estacionados.stream().filter(compra -> compra.getPatente().equals(patente)).findFirst().orElse(null);
+	}
+	
+	public LocalDateTime getHoraActual() {
+		return this.horaActual;
+	}
+	
+	
+	@Override
+    public void subscribir(Observador o) {
+        observadores.add(o);
+    }
+
+	@Override
+    public void desuscribir(Observador o) {
+        observadores.remove(o);
+    }
+
+	@Override
+    public void notificar(Evento e) {
+        for (Observador o : observadores) {
+            o.actualizar(e);
+        }
+    }
+    
+	
+	/*
+	AGREGAR "notificar(new Evento("InicioEstacionamiento", null));" al método iniciarEstacionamiento
+	AGREGAR "notificar(new Evento(\"FinEstacionamiento\", null));" al método finalizarEstacionamiento
+	AGREGAR "notificar(new Evento("RecargaCredito", null));" al método recargarCredito
+	*/
+
+
 
 }

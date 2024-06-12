@@ -78,7 +78,7 @@ class AppUsuarioTest {
 
 	@Test
     public void sonLas05PMYElSaldoDaHastaLas7() {
-		when(sem.horaActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
+		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
 		appT.cargarSaldo(80);
 		assertEquals(appT.saldo(), 80.00);		
 		assertEquals(LocalDateTime.of(2024, 6, 8, 19, 00), appT.calcularHoraFin());
@@ -86,7 +86,7 @@ class AppUsuarioTest {
 	
 	@Test
     public void sonLas08PMYElSaldoAlcanzaPeroElEstacionamientoCierraALas22() {
-		when(sem.horaActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
+		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
 		appT.cargarSaldo(800);
 		assertEquals(appT.saldo(), 800.00);	
 		assertEquals(LocalDateTime.of(2024, 6, 8, 22, 00), appT.calcularHoraFin());

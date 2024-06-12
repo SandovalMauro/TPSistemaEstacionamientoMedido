@@ -5,7 +5,10 @@ package sem;
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import entidad.Evento;
 import entidad.Observador;
 import entidad.Sujeto;
@@ -14,6 +17,7 @@ import puntoDeVenta.Compra;
 
 public class SEM implements Sujeto {
 	private List<Observador> observadores = new ArrayList<>();
+	private Map<String, Infraccion> infracciones;
 	private List<Compra> compras;
 	private List<RegistroEstacionamiento> estacionados;
 	private LocalDateTime horaActual;
@@ -21,6 +25,7 @@ public class SEM implements Sujeto {
 	public SEM() {
 		this.compras = new ArrayList<Compra>();
 		this.estacionados = new ArrayList<RegistroEstacionamiento>();
+		this.infracciones = new HashMap<>();
 	}
 	
 	public void agregarCompra(Compra compra) {
@@ -57,11 +62,6 @@ public class SEM implements Sujeto {
 		return false;
 	}
 
-	public void agregarInfraccion(Infraccion infraccion) {
-		// TODO Auto-generated method stub
-		
-
-	}
 	
 	public RegistroEstacionamiento buscarEstacionamiento(String patente) {
 		//VER elige la primera en aparecer creo que deberia ser la ultima en aparecer
@@ -74,6 +74,9 @@ public class SEM implements Sujeto {
 		return this.horaActual;
 	}
 	
+	public void agregarInfraccion(Infraccion infraccion) {
+        infracciones.put(infraccion.getPatente(), infraccion);
+    }
 	
 	@Override
     public void subscribir(Observador o) {

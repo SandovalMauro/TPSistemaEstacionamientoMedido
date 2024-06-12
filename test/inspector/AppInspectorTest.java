@@ -1,4 +1,4 @@
-package inspectorTest;
+package inspector;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;

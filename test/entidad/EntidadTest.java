@@ -1,4 +1,4 @@
-package entidadTest;
+package entidad;
 
 import static org.mockito.Mockito.*;
 

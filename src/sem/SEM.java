@@ -78,6 +78,10 @@ public class SEM implements Sujeto {
         infracciones.put(infraccion.getPatente(), infraccion);
     }
 	
+	public Infraccion obtenerInfraccion(String patente) {
+        return infracciones.get(patente);
+    }
+	
 	@Override
     public void subscribir(Observador o) {
         observadores.add(o);
@@ -94,6 +98,7 @@ public class SEM implements Sujeto {
             o.actualizar(e);
         }
     }
+
 	
 	/*
 	AGREGAR "notificar(new Evento("InicioEstacionamiento", null));" al método iniciarEstacionamiento

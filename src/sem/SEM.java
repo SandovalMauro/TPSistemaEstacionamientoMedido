@@ -2,6 +2,8 @@ package sem;
 
 
 import inspector.Infraccion;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import puntoDeVenta.Compra;
@@ -10,6 +12,7 @@ public class SEM {
 	
 	private List<Compra> compras;
 	private List<RegistroEstacionamiento> estacionados;
+	public Object horaActual;
 	
 	public SEM() {
 		this.compras = new ArrayList<Compra>();
@@ -49,6 +52,21 @@ public class SEM {
 	public void agregarInfraccion(Infraccion infraccion) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public double getValorHora() {
+		// TODO Auto-generated method stub
+		return 40.00;
+	}
+
+	public LocalDateTime horaActual() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public LocalDateTime horaCierreHoy() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

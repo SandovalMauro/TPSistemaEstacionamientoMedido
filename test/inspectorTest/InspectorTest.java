@@ -36,5 +36,8 @@ public class InspectorTest {
         verify(appInspector).altaDeInfraccion("abc123");
         verify(appInspector).tieneEstacionamientoVigente("abc123");
     }
+    
+    
+    
 }
 

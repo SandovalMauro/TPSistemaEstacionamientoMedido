@@ -1,4 +1,5 @@
 package appUsuario;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import sem.RegistroEstacionamiento;
@@ -40,7 +41,7 @@ public class AppUsuario implements MovementSensor {
 	
 	public void iniciarEstacionamiento() {;
 	    //Hacer el registro de estacionamiento en esta clase y enviarsela al SEM. 
-		this.sem.agregarEstacionamiento(new RegistroEstacionamiento(/*this.sem.getHoraActual(), this.calcularHoraFin(), this.patente*/));
+		this.sem.agregarEstacionamiento(new RegistroEstacionamiento(this.sem.horaActual(), this.calcularHoraFin(), this.patente));
 	//this.sem.nuevoEstacionamiento(this.numero, this.patente);    // IMPLEMENTAR !!!!!!
 	}
 
@@ -48,9 +49,24 @@ public class AppUsuario implements MovementSensor {
 		this.sem.finalizarEstacionamiento(this.numero); // este queda igual.
 	}
 
-	private LocalDateTime calcularHoraFin() {
-		return null; /* VER iniciarEstacionamiento()*/}
+	LocalDateTime calcularHoraFin() {
+		return this.horaMin(this.horaMaximaConSaldo(),this.sem.horaCierreHoy()); }
 
+	
+	private LocalDateTime horaMin(LocalDateTime hora1, LocalDateTime hora2) {
+		if (hora1.isBefore(hora2)) {return hora1;} else return hora2;
+	}
+	
+	
+	private LocalDateTime horaMaximaConSaldo() {	
+		return sem.horaActual().plusHours(this.horasDivSaldo());
+	}
+
+	protected int horasDivSaldo() {
+		return (int) (this.saldo() / sem.getValorHora());
+	}
+	
+	
 	@Override
 	public void driving() {
 		if (this.sensorActivo && !this.flagDriving) {

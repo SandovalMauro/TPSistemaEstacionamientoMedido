@@ -1,10 +1,13 @@
 package appUsuario;
 import static org.mockito.Mockito.*;
 
-
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import puntoDeVenta.PuntoDeVenta;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import sem.SEM;
@@ -17,6 +20,7 @@ class AppUsuarioTest {
 	AppUsuario appT;
 	ModoApp modoAutomatico;
 	ModoApp modoManual;
+	PuntoDeVenta puntoDeVenta;
 	
 	
 	
@@ -26,6 +30,10 @@ class AppUsuarioTest {
 		appT = new AppUsuario(sem, 1167648255, "ABC 123");
 		modoAutomatico = mock(ModoAutomatico.class);
 		modoManual =  mock(ModoManual.class);
+		puntoDeVenta = mock(PuntoDeVenta.class);
+		
+		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 22, 00));
+		when(sem.getValorHora()).thenReturn(40.00);
 	}
 
 	@Test
@@ -45,7 +53,7 @@ class AppUsuarioTest {
 	}
 	
 	@Test 
-	void a() {
+	void seEstaEnModoManualYSePasaAWalking() {
 		appT.setModo(modoAutomatico);
 		
 		assertTrue(appT.isFlagDriving());
@@ -67,6 +75,23 @@ class AppUsuarioTest {
 	}
 
 	
+
+	@Test
+    public void sonLas05PMYElSaldoDaHastaLas7() {
+		when(sem.horaActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
+		appT.cargarSaldo(80);
+		assertEquals(appT.saldo(), 80.00);		
+		assertEquals(LocalDateTime.of(2024, 6, 8, 19, 00), appT.calcularHoraFin());
+	}
+	
+	@Test
+    public void sonLas08PMYElSaldoAlcanzaPeroElEstacionamientoCierraALas22() {
+		when(sem.horaActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
+		appT.cargarSaldo(800);
+		assertEquals(appT.saldo(), 800.00);	
+		assertEquals(LocalDateTime.of(2024, 6, 8, 22, 00), appT.calcularHoraFin());
+	
+	}
 	
 	
 }

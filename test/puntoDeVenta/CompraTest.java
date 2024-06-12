@@ -41,9 +41,17 @@ class CompraTest {
 	@Test
 	void testNumeroDeControl() {
 		assertNotEquals(compraPuntual.numControl(),recarga.numControl());
-		//como se instancio primero compraPuntual su numero de control debe ser menor al de recarga
-		assertTrue(compraPuntual.numControl()< recarga.numControl());
-		assertFalse(compraPuntual.numControl()>= recarga.numControl());
+		
+		/*como se instancio primero compraPuntual y luego se instancio recarga por lo que
+		  recarga debe tener el numero de control que le sigue al numero de control de compraPuntual*/
+		assertEquals(compraPuntual.numControl()+1, recarga.numControl());
+		
+		/*se creo una nueva instancia de compraPuntual por lo que su numero de control debe ser el
+		 * siguiente del numero de control de recarga
+		 */
+		compraPuntual = new CompraPuntual(punto,fechaYHora,cantidadHs);
+		assertEquals(recarga.numControl()+1, compraPuntual.numControl());
+
 	}
 	
 	@Test

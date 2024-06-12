@@ -5,9 +5,6 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import inspector.AppInspector;
-import inspector.Inspector;
-
 public class InspectorTest {
 
     private AppInspector appInspector;

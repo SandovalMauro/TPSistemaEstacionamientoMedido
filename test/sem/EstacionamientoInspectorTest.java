@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import inspector.Infraccion;
 import inspector.Inspector;
 
-public class EstacionamientoInspector {
+public class EstacionamientoInspectorTest {
 
     private SEM sem;
     private Infraccion infraccion;

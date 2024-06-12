@@ -5,9 +5,6 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import entidad.Entidad;
-import entidad.Evento;
-
 public class EntidadTest {
 	
 	private Entidad entidad;

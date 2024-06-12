@@ -1,9 +1,6 @@
 package sem;
-
-
-
+import inspector.Infraccion;
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 import entidad.Evento;
@@ -16,7 +13,10 @@ public class SEM implements Sujeto {
 	private List<Observador> observadores = new ArrayList<>();
 	private List<Compra> compras;
 	private List<RegistroEstacionamiento> estacionados;
+
+
 	private LocalDateTime horaActual;
+
 	
 	public SEM() {
 		this.compras = new ArrayList<Compra>();
@@ -44,9 +44,7 @@ public class SEM implements Sujeto {
 		
 	}
 
-	public void nuevoEstacionamiento(int numero, String patente){
-		
-	}
+
 	
 	public boolean estaVigente(String patente) {
 		// TODO Auto-generated method stub
@@ -58,11 +56,20 @@ public class SEM implements Sujeto {
 	}
 
 	public void agregarInfraccion(Infraccion infraccion) {
-		// TODO Auto-generated method stub
+		
 		
 
 	}
-	
+
+
+	public double getValorHora() {return 40.00;}
+
+
+	public LocalDateTime horaCierreHoy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public RegistroEstacionamiento buscarEstacionamiento(String patente) {
 		//VER elige la primera en aparecer creo que deberia ser la ultima en aparecer
 		// List<RegistroEstacionamiento> listaInvertida = new ArrayList<RegistroEstacionamiento>(this.estacionados);
@@ -91,12 +98,14 @@ public class SEM implements Sujeto {
             o.actualizar(e);
         }
     }
+    
 	
 	/*
 	AGREGAR "notificar(new Evento("InicioEstacionamiento", null));" al método iniciarEstacionamiento
 	AGREGAR "notificar(new Evento(\"FinEstacionamiento\", null));" al método finalizarEstacionamiento
 	AGREGAR "notificar(new Evento("RecargaCredito", null));" al método recargarCredito
 	*/
+
 
 
 }

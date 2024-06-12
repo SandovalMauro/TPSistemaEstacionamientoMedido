@@ -15,8 +15,8 @@ public class Recarga extends Compra{
 		
 	}
 
-//	public int getCelular() {
-//		return celular;
-//	}
+	public int getCelular() {
+		return celular;
+	}
 
 }

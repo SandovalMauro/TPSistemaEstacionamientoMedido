@@ -16,16 +16,15 @@ public class PuntoDeVenta {
 		this.sem = sem;
 	}
 
-	public void cargarCredito(/*Usuario usuario, */ double credito, LocalDateTime fecha) {
-
-		int celular = 0; // usuario.celular.nroCelular();
-		this.sem.agregarCompra(new Recarga(this, fecha,credito, celular));
+	public void cargarCredito(AppUsuario app, double credito, LocalDateTime fecha) {
+		
+		this.sem.agregarCompra(new Recarga(this, fecha,credito, app.getCelular()));
 		//aumentar credito al usuario
-		//usuario.aumentarCredito(credito);
+		app.cargarSaldo(credito);
 	}
 	
 
-	public void iniciarEstacionamiento(/*Usuario usuario,*/ int cantidadHs, LocalDateTime fechaInicio, String patente) {
+	public void iniciarEstacionamiento(int cantidadHs, LocalDateTime fechaInicio, String patente) {
 
 		CompraPuntual compraPuntual = new CompraPuntual(this,fechaInicio,cantidadHs);
 		this.sem.agregarCompra(compraPuntual);

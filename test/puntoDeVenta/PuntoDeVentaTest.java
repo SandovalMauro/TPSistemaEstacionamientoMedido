@@ -5,7 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,13 @@ import appUsuario.AppUsuario;
 import sem.SEM;
 
 
-class TestPuntoDeVenta {
+class PuntoDeVentaTest {
 	private PuntoDeVenta punto;
-	private LocalDate fecha;
+	private LocalDateTime fecha;
 	private SEM sem;
 	private Recarga compra1;
+	private AppUsuario app;
+	private String patente;
 
 	//private Usuario usuario;
 
@@ -27,9 +29,10 @@ class TestPuntoDeVenta {
 	@BeforeEach
 	void SetUp() throws Exception{
 		
-		fecha = mock(LocalDate.class);
+		fecha = mock(LocalDateTime.class);
 		sem = new SEM();//mock(SEM.class);
-		//usuario = mock(Usuario.class);
+		app = mock(AppUsuario.class);
+		patente = "BB123XX";
 
 		compra1 = mock(Recarga.class);
 		punto = new PuntoDeVenta(sem);
@@ -38,13 +41,14 @@ class TestPuntoDeVenta {
 
 	@Test
 	void testCargaCredito() {
-		//punto.cargarCredito(usuario, 100, fecha);
+		punto.cargarCredito(app, 100, fecha);
+		verify(app).cargarSaldo(100);
 		assertEquals(1,sem.compras().size());
 	}
 	
 	@Test
-	void testEstacionamiento() {
-	//	punto.iniciarEstacionamiento(usuario, 0, fecha);
+	void testIniciarEstacionamiento() {
+		punto.iniciarEstacionamiento(3, fecha, patente);
 		assertEquals(1,sem.compras().size());
 		assertEquals(1,sem.estacionados().size());
 	}

@@ -23,5 +23,4 @@ public class Compra {
 	public LocalDateTime getFechaYHora() {
 		return fechaYHora;
 	}
-
 }

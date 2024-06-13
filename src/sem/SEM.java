@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import appUsuario.AppUsuario;
+import appUsuario.MensajeConsultaSaldo;
 import appUsuario.MensajeFin;
 import entidad.Evento;
 import entidad.Observador;
@@ -24,6 +25,7 @@ public class SEM implements Sujeto {
 	private ArrayList<AppUsuario> usuarios;
 	private double valorHora;
 	private LocalTime horaCierre;
+	
 	
 	
 	public void agregarAppUsuario(AppUsuario app) {
@@ -134,6 +136,7 @@ public class SEM implements Sujeto {
 		app.cargarSaldo(monto);
 		Evento evento = new Evento("RecargaCredito", monto);
 		notificar(evento);
+
 	}
 
 	public void agregarInfraccion(Infraccion infraccion) {
@@ -162,6 +165,12 @@ public class SEM implements Sujeto {
 
 	public List<Observador> getObservadores() {
 		return observadores;
+	}
+
+	public void consultarSaldoDe(AppUsuario app) {
+		
+		app.recibirMensaje(new MensajeConsultaSaldo(),null);
+		
 	}
 
 }

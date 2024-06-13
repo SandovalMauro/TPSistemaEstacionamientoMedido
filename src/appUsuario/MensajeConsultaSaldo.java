@@ -8,7 +8,7 @@ public class MensajeConsultaSaldo extends Mensaje {
 	public String mensaje(RegistroEstacionamiento estacionamiento, AppUsuario app) {
 		// TODO Auto-generated method stub
 		return "#############################" + "\n" +
-				"Su saldo actual es de $" + app.saldo()  + "\n" +
+				"Su saldo actual es de $" + app.getSaldo()  + "\n" +
 				"#############################";
 	}
 

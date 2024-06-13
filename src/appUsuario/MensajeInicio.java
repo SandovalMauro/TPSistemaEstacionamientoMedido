@@ -7,7 +7,7 @@ public class MensajeInicio extends Mensaje{
 	@Override
 	public String mensaje(RegistroEstacionamiento estacionamiento, AppUsuario app) {
 		
-		if(app.saldo()>= app.getSem().getValorHora()) {
+		if(app.getSaldo()>= app.getSem().getValorHora()) {
 			
 		
 		return "#############################" + "\n" +

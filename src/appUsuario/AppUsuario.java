@@ -28,7 +28,10 @@ public class AppUsuario implements MovementSensor {
 		this.sensorActivo = false;
 	}
 	
-	public double saldo() { return this.saldo; }
+	
+	
+	public void consultarSaldo() {this.sem.consultarSaldoDe(this);}
+	public double getSaldo() { return this.saldo; }
 	public void cargarSaldo(double cantidad) { this.saldo += cantidad; }
 	public void gastarSaldo(double cantidad) { this.saldo -= cantidad; } 
 	public void iniciarEstacionamiento() {
@@ -47,7 +50,7 @@ public class AppUsuario implements MovementSensor {
 		return sem.getHoraActual().plusHours(this.horasDivSaldo());
 	}
 	private int horasDivSaldo() {
-		return (int) (this.saldo() / sem.getValorHora());
+		return (int) (this.getSaldo() / sem.getValorHora());
 	}
 	@Override
 	public void driving() {
@@ -77,12 +80,12 @@ public class AppUsuario implements MovementSensor {
 		return sem;
 	}
 	
+	//Nota:  
 	public void recibirMensaje(Mensaje mensaje,RegistroEstacionamiento estacionamiento) {
 		mensaje.mostrar(estacionamiento, this);
 	}
 
 	public String getMensajeDeModo() {
-		// TODO Auto-generated method stub
 		return this.modo.mensajeDeModo();
 	}
 	

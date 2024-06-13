@@ -23,6 +23,7 @@ class AppUsuarioTest {
 	ModoApp modoManual;
 	PuntoDeVenta puntoDeVenta;
 	Mensaje mensaje;
+	Mensaje mensajeSaldo;
 	RegistroEstacionamiento estacionamiento;
 	
 	
@@ -35,7 +36,7 @@ class AppUsuarioTest {
 		puntoDeVenta = mock(PuntoDeVenta.class);
 		
 		estacionamiento = mock(RegistroEstacionamiento.class);
-		mensaje = new MensajeFin();
+
 		
 		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
 		when(sem.getValorHora()).thenReturn(40.00);
@@ -122,7 +123,7 @@ class AppUsuarioTest {
     public void sonLas05PMYElSaldoDaHastaLas7() {
 		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
 		appT.cargarSaldo(80);
-		assertEquals(appT.saldo(), 80.00);		
+		assertEquals(appT.getSaldo(), 80.00);		
 		assertEquals(LocalDateTime.of(2024, 6, 8, 19, 00), appT.calcularHoraFin());
 	}
 	
@@ -130,7 +131,9 @@ class AppUsuarioTest {
     public void sonLas06PMYElSaldoAlcanzaPeroElEstacionamientoCierraALas20() {
 		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 18, 00));
 		appT.cargarSaldo(800);
-		assertEquals(appT.saldo(), 800.00);	
+		appT.consultarSaldo();
+		
+		assertEquals(appT.getSaldo(), 800.00);	
 		assertEquals(LocalDateTime.of(2024, 6, 8, 20, 00), appT.calcularHoraFin());
 	
 	}
@@ -142,13 +145,19 @@ class AppUsuarioTest {
 		when(estacionamiento.horaInicio()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
 		when(estacionamiento.horaFin()).thenReturn(LocalDateTime.of(2024, 6, 8, 19, 00));
 		when(estacionamiento.cantidadHoras()).thenReturn(2);
-		mensaje.mostrar(estacionamiento, appT);
+		
 	}
 	
 	@Test 
 	public void finalizarEstacionamientoAvisaAlSem() {
-
+		modoManual = new ModoManual();
+		appT.setModo(modoManual);
+		appT.iniciarEstacionamiento();
+		appT.finalizarEstacionamiento();
+		verify(sem).finalizarEstacionamiento(1167648255);
 	}
+	
+	
 	
 	
 }

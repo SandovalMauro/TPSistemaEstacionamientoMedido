@@ -11,6 +11,7 @@ import java.util.Map;
 import appUsuario.AppUsuario;
 import appUsuario.MensajeConsultaSaldo;
 import appUsuario.MensajeFin;
+import appUsuario.MensajeInicio;
 import entidad.Evento;
 import entidad.Observador;
 import entidad.Sujeto;
@@ -32,9 +33,7 @@ public class SEM implements Sujeto {
 		this.usuarios.add(app);
 	}
 	
-	public void finalizarTodosLosEstacionamientos() {
-		
-	}
+
 	
 	
 	public SEM() {
@@ -46,12 +45,24 @@ public class SEM implements Sujeto {
 		this.usuarios = new ArrayList<AppUsuario>();
 	}
 
+	public void finalizarTodosLosEstacionamientos() {
+		if((this.getHoraActual().toLocalTime()).equals(this.horaCierre)) {
+			this.estacionamientoVigentes().stream().forEach(estVig -> estVig.setHoraFin(this.getHoraActual()));
+		}
+	}
+	
 	public void agregarCompra(Compra compra) {
 		this.compras.add(compra);
 	}
 
 	public void agregarEstacionamiento(RegistroEstacionamiento estacionamiento) {
 		this.estacionados.add(estacionamiento);
+		AppUsuario app = this.buscarUsuario(estacionamiento.getCelular());
+		
+		if(app != null) {
+			this.buscarUsuario(estacionamiento.getCelular()).recibirMensaje(new MensajeInicio(), estacionamiento);
+		}
+		
 
 		// Notifica a las entidades
 		Evento evento = new Evento("InicioEstacionamiento", estacionamiento);

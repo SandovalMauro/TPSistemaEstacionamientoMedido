@@ -31,4 +31,10 @@ public class EstacionamientoCompraPuntual extends RegistroEstacionamiento{
 		return 0;
 	}
 
+	@Override
+	public void horaFin(LocalDateTime nuevaHora) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

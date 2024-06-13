@@ -19,7 +19,7 @@ public class AppUsuario implements MovementSensor {
 	public AppUsuario(SEM sem, int numero, String patente) {
 		this.saldo = 0;
 		this.sem = sem;
-		this.sem.agregarAppUsuario(this);
+		//this.sem.agregarAppUsuario(this);
 		this.modo = new ModoManual();
 		this.numero = numero;
 		this.patente = patente;

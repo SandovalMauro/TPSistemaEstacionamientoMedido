@@ -32,4 +32,10 @@ public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 		return this.celular;
 	}
 
+	@Override
+	public void horaFin(LocalDateTime nuevaHora) {
+		// TODO Auto-generated method stub
+		this.horaFin = nuevaHora;
+	}
+
 }

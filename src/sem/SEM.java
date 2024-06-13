@@ -27,7 +27,7 @@ public class SEM implements Sujeto {
 	
 	public void agregarAppUsuario(AppUsuario app) {
 		this.usuarios.add(app);
-	};
+	}
 	
 	public void finalizarTodosLosEstacionamientos() {
 		
@@ -40,6 +40,7 @@ public class SEM implements Sujeto {
 		this.infracciones = new HashMap<>();
 		this.valorHora = 40.00;
 		this.horaCierre = LocalTime.of(20,00);
+		this.usuarios = new ArrayList<AppUsuario>();
 	}
 
 	public void agregarCompra(Compra compra) {
@@ -89,7 +90,7 @@ public class SEM implements Sujeto {
 	}
 	
 	private RegistroEstacionamiento buscarEstacionamiento(int num) {
-		return this.estacionados.stream()
+		return this.estacionamientoVigentes().stream()
 			       .filter(est -> est.getCelular() == num)
 			       .findFirst()
 			       .orElse(null);
@@ -114,6 +115,10 @@ public class SEM implements Sujeto {
 
 	public LocalDateTime getHoraActual() {
 		return this.horaActual;
+	}
+	
+	public void setHoraActual(LocalDateTime horaActual) {
+		this.horaActual = horaActual;
 	}
 
 	public double getValorHora() {

@@ -34,6 +34,7 @@ class AppUsuarioTest {
 		
 		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 22, 00));
 		when(sem.getValorHora()).thenReturn(40.00);
+		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
 	}
 
 	@Test
@@ -46,9 +47,7 @@ class AppUsuarioTest {
 		assertTrue(appT.isFlagDriving());
 		appT.walking();
 		assertTrue(appT.isFlagDriving());
-
 		//verify(appT, never()).getModo();
-		
 		
 	}
 	
@@ -73,9 +72,43 @@ class AppUsuarioTest {
 		assertTrue(appT.isFlagDriving());
 		verify(modoAutomatico, times(1)).drivingMSG(appT);
 	}
-
 	
+	@Test
+	public void alEstarEnModoAutomaticoElEstacionamientoSeIniciaAutomaticamente() {
 
+		modoAutomatico = new ModoAutomatico();
+		
+		appT.setModo(modoAutomatico);
+		
+		appT.driving();
+		appT.walking();
+		
+		
+		appT.driving();
+		verify(sem).finalizarEstacionamiento(1167648255);
+	}
+	
+	
+	@Test 
+	public void seActivaYDesactivaElSensorAlCambiarDeModo() {
+		modoAutomatico = new ModoAutomatico();
+		modoManual =  new ModoManual();
+		
+		assertFalse(appT.isSensorActivo());
+		appT.setModo(modoAutomatico);
+		assertTrue(appT.isSensorActivo());
+		appT.setModo(modoManual);
+		assertFalse(appT.isSensorActivo());
+	}
+	
+	@Test
+	public void testDeGetters() {
+		appT.setModo(modoAutomatico);
+		assertEquals(modoAutomatico,appT.getModo());
+		
+		assertEquals(1167648255, appT.getCelular());
+	}
+	
 	@Test
     public void sonLas05PMYElSaldoDaHastaLas7() {
 		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
@@ -92,6 +125,13 @@ class AppUsuarioTest {
 		assertEquals(LocalDateTime.of(2024, 6, 8, 22, 00), appT.calcularHoraFin());
 	
 	}
+
+	@Test 
+	public void finalizarEstacionamientoAvisaAlSem() {
+
+	}
+	
+	
 	
 	
 }

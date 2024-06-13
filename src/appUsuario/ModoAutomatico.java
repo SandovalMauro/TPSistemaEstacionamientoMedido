@@ -1,6 +1,6 @@
 package appUsuario;
 
-public class ModoAutomatico extends ModoApp{
+public class ModoAutomatico implements ModoApp{
 	@Override
 	public void drivingMSG(AppUsuario app) {
 		app.finalizarEstacionamiento();

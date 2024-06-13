@@ -1,9 +1,8 @@
 package sem;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
-import appUsuario.AppUsuario;
 
 public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 	private LocalDateTime horaInicio;
@@ -36,6 +35,18 @@ public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 	public int getCelular() {
 		// TODO Auto-generated method stub
 		return this.celular;
+	}
+
+	@Override
+	public void setHoraFin(LocalDateTime nuevaHora) {
+		// TODO Auto-generated method stub
+		this.horaFin = nuevaHora;
+	}
+
+	@Override
+	public double cantidadHoras() {
+		// TODO Auto-generated method stub
+		return (int) ChronoUnit.HOURS.between(this.horaIncio(), this.horaFin());
 	}
 
 }

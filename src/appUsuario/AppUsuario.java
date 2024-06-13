@@ -77,8 +77,8 @@ public class AppUsuario implements MovementSensor {
 		System.out.print("EstacionamientoFinalizado.");
 		System.out.print("Hora Fin: "+ estacionamiento.horaIncio().toString());
 		System.out.print("Hora Fin: "+ estacionamiento.horaFin().toString());
-		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras().toString());
-		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()).toString());
+		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras());
+		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()));
 		System.out.print("---------------------------");
 		System.out.print(modo.mensajeDeModo()); 
 	}

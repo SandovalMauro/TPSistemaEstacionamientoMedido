@@ -31,4 +31,16 @@ public class EstacionamientoCompraPuntual extends RegistroEstacionamiento{
 		return 0;
 	}
 
+	@Override
+	public void setHoraFin(LocalDateTime nuevaHora) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double cantidadHoras() {
+		// TODO Auto-generated method stub
+		return this.compra.getHsCompradas();
+	}
+
 }

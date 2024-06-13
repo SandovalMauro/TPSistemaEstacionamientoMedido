@@ -99,20 +99,17 @@ public class SEM implements Sujeto {
 	
 	public boolean estaVigente(String patente) {
 		// TODO Auto-generated method stub
-		RegistroEstacionamiento estacionamiento = this.buscarEstacionamiento(patente);
-		if (estacionamiento != null) {
-			return estacionamiento.estaVigente(this.getHoraActual());
-		}
-		return false;
+		return this.buscarEstacionamiento(patente) != null;
 	}
 
 	public RegistroEstacionamiento buscarEstacionamiento(String patente) {
-		// VER elige la primera en aparecer creo que deberia ser la ultima en aparecer
-		// List<RegistroEstacionamiento> listaInvertida = new
-		// ArrayList<RegistroEstacionamiento>(this.estacionados);
-		// Collect.reverse(listaInvertida);
-		return this.estacionados.stream().filter(compra -> compra.getPatente().equals(patente)).findFirst()
-				.orElse(null);
+		return this.estacionamientoVigentes().stream().filter(estacionamiento -> estacionamiento.getPatente().
+				equals(patente)).findFirst().orElse(null);	
+	}
+	
+	public List<RegistroEstacionamiento> estacionamientoVigentes(){
+		return this.estacionados().stream().filter(estacionamiento -> estacionamiento.
+				estaVigente(this.getHoraActual())).toList();
 	}
 
 	public LocalDateTime getHoraActual() {

@@ -50,5 +50,12 @@ class EstacionamientoAppUsuarioTest {
 		assertEquals(patente, estacionamiento.getPatente());
 		
 	}
-
+	
+	@Test
+	void testCantidadHoras() {
+		assertEquals(4, estacionamiento.cantidadHoras());
+		//setteo una nueva hora fin que es menor a la que estaba 
+		estacionamiento.setHoraFin(horaDeFinalizacion.minusHours(1));
+		assertEquals(3, estacionamiento.cantidadHoras());
+	}
 }

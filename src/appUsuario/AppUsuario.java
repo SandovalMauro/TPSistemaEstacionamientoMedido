@@ -70,6 +70,12 @@ public class AppUsuario implements MovementSensor {
 	public int getNumero() {
 		return this.numero;
 	}
+	
+	public void recibirMensaje(String msg) {
+		System.out.print(msg + modo.mensajeDeModo()); 
+	}
+	
+	
 }
 
 

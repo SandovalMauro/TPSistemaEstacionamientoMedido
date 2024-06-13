@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import appUsuario.AppUsuario;
+import appUsuario.MensajeFin;
 import entidad.Evento;
 import entidad.Observador;
 import entidad.Sujeto;
@@ -71,7 +72,7 @@ public class SEM implements Sujeto {
 		estacionamiento.setHoraFin(this.horaActual);
 		app.gastarSaldo(estacionamiento.cantidadHoras() * this.valorHora);
 		
-		app.recibirMensajeFin(estacionamiento);
+		app.recibirMensaje(new MensajeFin(),estacionamiento);
 
 		
 		// TODO Auto-generated method stub ---- el numero es para saber a quien hay que

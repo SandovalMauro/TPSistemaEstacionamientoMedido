@@ -1,11 +1,15 @@
 package sem;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import appUsuario.AppUsuario;
 
 public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFin;
 	private int celular;
+
 	
 	public EstacionamientoAppUsuario(LocalDateTime horaInicio, LocalDateTime horaFin, String patente, int celular) {
 		super(patente);
@@ -14,6 +18,8 @@ public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 		this.celular = celular;
 	}
 
+
+	
 	@Override
 	public LocalDateTime horaIncio() {
 		// TODO Auto-generated method stub

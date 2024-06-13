@@ -20,7 +20,7 @@ public class AppUsuario implements MovementSensor {
 	public AppUsuario(SEM sem, int numero, String patente) {
 		this.saldo = 0;
 		this.sem = sem;
-		//this.sem.agregarAppUsuario(this);
+		this.sem.agregarAppUsuario(this);
 		this.modo = new ModoManual();
 		this.numero = numero;
 		this.patente = patente;
@@ -77,8 +77,8 @@ public class AppUsuario implements MovementSensor {
 		System.out.print("EstacionamientoFinalizado.");
 		System.out.print("Hora Fin: "+ estacionamiento.horaIncio().toString());
 		System.out.print("Hora Fin: "+ estacionamiento.horaFin().toString());
-		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras().toString());
-		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()).toString());
+		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras());
+		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()));
 		System.out.print("---------------------------");
 		System.out.print(modo.mensajeDeModo()); 
 	}

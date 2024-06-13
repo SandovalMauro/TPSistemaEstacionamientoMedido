@@ -25,5 +25,7 @@ public abstract class RegistroEstacionamiento {
 		return this.patente;
 	}
 
-	public abstract void horaFin(LocalDateTime nuevaHora);
+	public abstract void setHoraFin(LocalDateTime nuevaHora);
+
+	public abstract double cantidadHoras();
 }

@@ -1,5 +1,6 @@
 package sem;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -49,9 +50,11 @@ class EstacionamientoCompraPuntualTest {
 	}
 	
 	@Test
-	void testConsultaPatenteYCelular() {
+	void testConsultaPatenteYCelularYHoras() {
+		when(compra.getHsCompradas()).thenReturn(3);
 		assertEquals(0, estacionamiento.getCelular());
 		assertEquals(patente, estacionamiento.getPatente());
+		assertEquals(3, estacionamiento.cantidadHoras());
 		
 	}
 	
@@ -61,6 +64,16 @@ class EstacionamientoCompraPuntualTest {
 		when(compra.getHsCompradas()).thenReturn(4);
 		assertEquals(horaDeFinalizacion, estacionamiento.horaFin());
 		
+	}
+	
+	@Test
+	void testSetHoraFinNoModificaHoraFin() {
+		when(compra.getFechaYHora()).thenReturn(horaDeInicio);
+		when(compra.getHsCompradas()).thenReturn(4);
+		assertEquals(horaDeFinalizacion, estacionamiento.horaFin());
+		estacionamiento.setHoraFin(horaDeInicio);
+		assertEquals(horaDeFinalizacion, estacionamiento.horaFin());
+		assertNotEquals(horaDeInicio,estacionamiento.horaFin());
 	}
 
 }

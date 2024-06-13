@@ -32,7 +32,7 @@ class AppUsuarioTest {
 		modoManual =  mock(ModoManual.class);
 		puntoDeVenta = mock(PuntoDeVenta.class);
 		
-		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 22, 00));
+		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
 		when(sem.getValorHora()).thenReturn(40.00);
 		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
 	}
@@ -122,11 +122,11 @@ class AppUsuarioTest {
 	}
 	
 	@Test
-    public void sonLas08PMYElSaldoAlcanzaPeroElEstacionamientoCierraALas22() {
-		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
+    public void sonLas06PMYElSaldoAlcanzaPeroElEstacionamientoCierraALas20() {
+		when(sem.getHoraActual()).thenReturn(LocalDateTime.of(2024, 6, 8, 18, 00));
 		appT.cargarSaldo(800);
 		assertEquals(appT.saldo(), 800.00);	
-		assertEquals(LocalDateTime.of(2024, 6, 8, 22, 00), appT.calcularHoraFin());
+		assertEquals(LocalDateTime.of(2024, 6, 8, 20, 00), appT.calcularHoraFin());
 	
 	}
 

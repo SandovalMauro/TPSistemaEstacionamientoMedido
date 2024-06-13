@@ -21,7 +21,7 @@ public class PuntoDeVenta {
 
 	public void cargarCredito(AppUsuario app, double credito, LocalDateTime fecha) {
 		
-		this.sem.agregarCompra(new Recarga(this, fecha,credito, app.getCelular()));
+		this.sem.agregarCompra(new Recarga(this, fecha,credito, app.getNumero()));
 
 		app.cargarSaldo(credito);
 	}

@@ -40,20 +40,23 @@ class AppUsuarioTest {
 	@Test
 	void seEstaEnModoManualYNoSeHaceNada() {
 		appT.setModo(modoManual);
-		
+
 		assertTrue(appT.isFlagDriving());
 		assertFalse(appT.isSensorActivo());
 		appT.driving(); 
 		assertTrue(appT.isFlagDriving());
 		appT.walking();
 		assertTrue(appT.isFlagDriving());
-		//verify(appT, never()).getModo();
+		
+
 		
 	}
 	
 	@Test 
 	void seEstaEnModoManualYSePasaAWalking() {
 		appT.setModo(modoAutomatico);
+		
+
 		
 		assertTrue(appT.isFlagDriving());
 		verify(modoAutomatico, times(1)).sensor(appT); 
@@ -79,7 +82,7 @@ class AppUsuarioTest {
 		modoAutomatico = new ModoAutomatico();
 		
 		appT.setModo(modoAutomatico);
-		
+
 		appT.driving();
 		appT.walking();
 		
@@ -101,12 +104,13 @@ class AppUsuarioTest {
 		assertFalse(appT.isSensorActivo());
 	}
 	
+
 	@Test
 	public void testDeGetters() {
 		appT.setModo(modoAutomatico);
 		assertEquals(modoAutomatico,appT.getModo());
 		
-		assertEquals(1167648255, appT.getCelular());
+		assertEquals(1167648255, appT.getNumero());
 	}
 	
 	@Test

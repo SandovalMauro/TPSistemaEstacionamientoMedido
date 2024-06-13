@@ -63,20 +63,16 @@ public class SEM implements Sujeto {
 	}
 
 	public void finalizarEstacionamiento(int num) {
-		AppUsuario app = this.usuarios.stream()
-			       .filter(usuario -> usuario.getNumero() == num)
-			       .findFirst()
-			       .orElse(null);
+		AppUsuario app = buscarUsuario(num);
 		
-		RegistroEstacionamiento estacionamiento = this.estacionados.stream()
-			       .filter(est -> est.getCelular() == num)
-			       .findFirst()
-			       .orElse(null);
+		RegistroEstacionamiento estacionamiento = buscarEstacionamiento(num);
 		
 		estacionamiento.setHoraFin(this.horaActual);
 		app.gastarSaldo(estacionamiento.cantidadHoras() * this.valorHora);
 		
-		app.
+		app.recibirMensajeFin(estacionamiento);
+
+		
 		// TODO Auto-generated method stub ---- el numero es para saber a quien hay que
 		// fletar
 
@@ -84,6 +80,23 @@ public class SEM implements Sujeto {
 		notificar(evento);
 	}
 
+	
+	private AppUsuario buscarUsuario(int num) {
+		return  this.usuarios.stream()
+			       .filter(usuario -> usuario.getNumero() == num)
+			       .findFirst()
+			       .orElse(null);
+	}
+	
+	private RegistroEstacionamiento buscarEstacionamiento(int num) {
+		return this.estacionados.stream()
+			       .filter(est -> est.getCelular() == num)
+			       .findFirst()
+			       .orElse(null);
+	
+	}
+	
+	
 	public boolean estaVigente(String patente) {
 		// TODO Auto-generated method stub
 		RegistroEstacionamiento estacionamiento = this.buscarEstacionamiento(patente);

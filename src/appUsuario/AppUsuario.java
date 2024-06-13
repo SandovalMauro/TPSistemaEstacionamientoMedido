@@ -3,6 +3,7 @@ package appUsuario;
 import java.time.LocalDateTime;
 
 import sem.EstacionamientoAppUsuario;
+import sem.RegistroEstacionamiento;
 import sem.SEM;
 
 
@@ -72,8 +73,14 @@ public class AppUsuario implements MovementSensor {
 		return this.numero;
 	}
 	
-	public void recibirMensaje(String msg) {
-		System.out.print(msg + modo.mensajeDeModo()); 
+	public void recibirMensajeFin(RegistroEstacionamiento estacionamiento) {
+		System.out.print("EstacionamientoFinalizado.");
+		System.out.print("Hora Fin: "+ estacionamiento.horaIncio().toString());
+		System.out.print("Hora Fin: "+ estacionamiento.horaFin().toString());
+		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras().toString());
+		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()).toString());
+		System.out.print("---------------------------");
+		System.out.print(modo.mensajeDeModo()); 
 	}
 	
 	

@@ -10,6 +10,7 @@ import puntoDeVenta.PuntoDeVenta;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import sem.RegistroEstacionamiento;
 import sem.SEM;
 
 
@@ -21,7 +22,8 @@ class AppUsuarioTest {
 	ModoApp modoAutomatico;
 	ModoApp modoManual;
 	PuntoDeVenta puntoDeVenta;
-	
+	Mensaje mensaje;
+	RegistroEstacionamiento estacionamiento;
 	
 	
 	@BeforeEach
@@ -31,6 +33,9 @@ class AppUsuarioTest {
 		modoAutomatico = mock(ModoAutomatico.class);
 		modoManual =  mock(ModoManual.class);
 		puntoDeVenta = mock(PuntoDeVenta.class);
+		
+		estacionamiento = mock(RegistroEstacionamiento.class);
+		mensaje = new MensajeFin();
 		
 		when(sem.horaCierreHoy()).thenReturn(LocalDateTime.of(2024, 6, 8, 20, 00));
 		when(sem.getValorHora()).thenReturn(40.00);
@@ -131,11 +136,19 @@ class AppUsuarioTest {
 	}
 
 	@Test 
+	public void avisoDeFinalizacion() {
+		modoManual = new ModoManual();
+		appT.setModo(modoManual);
+		when(estacionamiento.horaInicio()).thenReturn(LocalDateTime.of(2024, 6, 8, 17, 00));
+		when(estacionamiento.horaFin()).thenReturn(LocalDateTime.of(2024, 6, 8, 19, 00));
+		when(estacionamiento.cantidadHoras()).thenReturn(2);
+		mensaje.mostrar(estacionamiento, appT);
+	}
+	
+	@Test 
 	public void finalizarEstacionamientoAvisaAlSem() {
 
 	}
-	
-	
 	
 	
 }

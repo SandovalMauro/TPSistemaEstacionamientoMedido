@@ -12,13 +12,13 @@ public abstract class RegistroEstacionamiento {
 	
 	public abstract int getCelular();
 	
-	public abstract LocalDateTime horaIncio();
+	public abstract LocalDateTime horaInicio();
 	
 	public abstract LocalDateTime horaFin();
 	
 	public boolean estaVigente(LocalDateTime horaActual) {
 		//Ver si lanzar Excepcion si la horaActual es menor a la hora de inicio
-		return horaActual.isAfter(this.horaIncio()) && horaActual.isBefore(this.horaFin());
+		return horaActual.isAfter(this.horaInicio()) && horaActual.isBefore(this.horaFin());
 	}
 	
 	public String getPatente() {
@@ -27,5 +27,5 @@ public abstract class RegistroEstacionamiento {
 
 	public abstract void setHoraFin(LocalDateTime nuevaHora);
 
-	public abstract double cantidadHoras();
+	public abstract int cantidadHoras();
 }

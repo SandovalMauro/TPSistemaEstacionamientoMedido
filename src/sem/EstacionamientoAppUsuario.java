@@ -20,7 +20,7 @@ public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 
 	
 	@Override
-	public LocalDateTime horaIncio() {
+	public LocalDateTime horaInicio() {
 		// TODO Auto-generated method stub
 		return this.horaInicio;
 	}
@@ -44,9 +44,9 @@ public class EstacionamientoAppUsuario extends RegistroEstacionamiento{
 	}
 
 	@Override
-	public double cantidadHoras() {
+	public int cantidadHoras() {
 		// TODO Auto-generated method stub
-		return (int) ChronoUnit.HOURS.between(this.horaIncio(), this.horaFin());
+		return (int) ChronoUnit.HOURS.between(this.horaInicio(), this.horaFin());
 	}
 
 }

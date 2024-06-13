@@ -73,6 +73,10 @@ public class AppUsuario implements MovementSensor {
 		return this.numero;
 	}
 	
+	public SEM getSem() {
+		return sem;
+	}
+	
 	public void recibirMensajeFin(RegistroEstacionamiento estacionamiento) {
 		System.out.print("EstacionamientoFinalizado.");
 		System.out.print("Hora Fin: "+ estacionamiento.horaIncio().toString());
@@ -81,6 +85,11 @@ public class AppUsuario implements MovementSensor {
 		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()));
 		System.out.print("---------------------------");
 		System.out.print(modo.mensajeDeModo()); 
+	}
+
+	public String getMensajeDeModo() {
+		// TODO Auto-generated method stub
+		return this.modo.mensajeDeModo();
 	}
 	
 	

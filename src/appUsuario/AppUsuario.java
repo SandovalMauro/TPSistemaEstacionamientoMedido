@@ -3,6 +3,7 @@ package appUsuario;
 import java.time.LocalDateTime;
 
 import sem.EstacionamientoAppUsuario;
+import sem.RegistroEstacionamiento;
 import sem.SEM;
 
 
@@ -29,6 +30,7 @@ public class AppUsuario implements MovementSensor {
 	
 	public double saldo() { return this.saldo; }
 	public void cargarSaldo(double cantidad) { this.saldo += cantidad; }
+	public void gastarSaldo(double cantidad) { this.saldo -= cantidad; } 
 	public void iniciarEstacionamiento() {
 		this.sem.agregarEstacionamiento(new EstacionamientoAppUsuario(this.sem.getHoraActual(), this.calcularHoraFin(), this.patente, this.numero));
 
@@ -70,6 +72,18 @@ public class AppUsuario implements MovementSensor {
 	public int getNumero() {
 		return this.numero;
 	}
+	
+	public void recibirMensajeFin(RegistroEstacionamiento estacionamiento) {
+		System.out.print("EstacionamientoFinalizado.");
+		System.out.print("Hora Fin: "+ estacionamiento.horaIncio().toString());
+		System.out.print("Hora Fin: "+ estacionamiento.horaFin().toString());
+		System.out.print("Horas Estacionadas: "+ estacionamiento.cantidadHoras().toString());
+		System.out.print("Monto Final $" + (estacionamiento.cantidadHoras() * this.sem.getValorHora()).toString());
+		System.out.print("---------------------------");
+		System.out.print(modo.mensajeDeModo()); 
+	}
+	
+	
 }
 
 

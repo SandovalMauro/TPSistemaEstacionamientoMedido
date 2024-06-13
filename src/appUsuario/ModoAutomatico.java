@@ -16,5 +16,10 @@ public class ModoAutomatico implements ModoApp{
 		app.setSensorActivo(true);
 		
 	}
+	
+	@Override
+	public String mensajeDeModo() {
+		return " Esta acción ha sido realizada de manera automática.";
+	}
 
 }

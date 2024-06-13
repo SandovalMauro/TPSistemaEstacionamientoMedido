@@ -2,19 +2,23 @@ package appUsuario;
 
 import sem.RegistroEstacionamiento;
 
-public class MensajeFin extends Mensaje{
+public class MensajeInicio extends Mensaje{
 
 	@Override
 	public String mensaje(RegistroEstacionamiento estacionamiento, AppUsuario app) {
 		
-		return 	"Finalizacion de estacionamiento" + "\n" +
+		if(app.saldo()>= app.getSem().getValorHora()) {
+			
+		
+		return "Inicio de estacionamiento " + "\n" +
 				"Hora Inicio: "+ estacionamiento.horaInicio().toString() + "\n" +
-				"Hora Fin: "+ estacionamiento.horaFin().toString()+ "\n" +
-				"Horas estacionadas: "+ estacionamiento.cantidadHoras() + "\n" +
-				"Monto Final $" + (estacionamiento.cantidadHoras() * app.getSem().getValorHora())+ "\n" +
+				"Hora Fin Maxima: "+ estacionamiento.horaFin().toString()+ "\n" +
 				"---------------------------" + "\n" +
 				app.getMensajeDeModo() + "\n" +
 				"#############################";
+		}
+		else {
+			return "Saldo insuficiente. Estacionamiento no permitido.";
+		}
 	}
-
 }

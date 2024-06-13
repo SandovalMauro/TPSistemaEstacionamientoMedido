@@ -1,16 +1,20 @@
 package inspector;
 
+import sem.Zona;
+
 public class Inspector {
 
 	private String nombreInspector;
 	private int IDinspector; //ID inspector es único por cada inspector.
 	private AppInspector app;
+	private Zona zona;
 	
 	// Constructor
-	public Inspector(String nombreInspector, int iDinspector, AppInspector app) {
+	public Inspector(String nombreInspector, int iDinspector, AppInspector app, Zona zona) {
 		this.nombreInspector = nombreInspector;
 		IDinspector = iDinspector;
 		this.app = app;
+		this.zona = zona;
 	}
 	
 	// Metodos
@@ -31,6 +35,10 @@ public class Inspector {
 
 	public AppInspector getApp() {
 		return app;
+	}
+	
+	public Zona getZona() {
+		return zona;
 	}
 
 }

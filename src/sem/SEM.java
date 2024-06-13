@@ -79,6 +79,13 @@ public class SEM implements Sujeto {
 	public LocalDateTime getHoraActual() {
 		return this.horaActual;
 	}
+	
+	public void cargarCredito() {
+		
+		
+	//Evento evento = new Evento("RecargaCredito", Dato);
+	//notificar(evento);
+	}
 
 	public void agregarInfraccion(Infraccion infraccion) {
 		infracciones.put(infraccion.getPatente(), infraccion);
@@ -108,11 +115,5 @@ public class SEM implements Sujeto {
 	public List<Observador> getObservadores() {
 		return observadores;
 	}
-
-	/*
-	 * AGREGAR Al método para recargarCredito:
-	 * 
-	 * Evento evento = new Evento("RecargaCredito", Dato); notificar(evento);
-	 */
 
 }

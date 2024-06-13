@@ -29,6 +29,7 @@ public class AppUsuario implements MovementSensor {
 	
 	public double saldo() { return this.saldo; }
 	public void cargarSaldo(double cantidad) { this.saldo += cantidad; }
+	public void gastarSaldo(double cantidad) { this.saldo -= cantidad; } 
 	public void iniciarEstacionamiento() {
 		this.sem.agregarEstacionamiento(new EstacionamientoAppUsuario(this.sem.getHoraActual(), this.calcularHoraFin(), this.patente, this.numero));
 

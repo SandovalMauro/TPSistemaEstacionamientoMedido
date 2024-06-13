@@ -10,7 +10,8 @@ public class MensajeInicio extends Mensaje{
 		if(app.saldo()>= app.getSem().getValorHora()) {
 			
 		
-		return "Inicio de estacionamiento " + "\n" +
+		return "#############################" + "\n" +
+				"Inicio de estacionamiento " + "\n" +
 				"Hora Inicio: "+ estacionamiento.horaInicio().toString() + "\n" +
 				"Hora Fin Maxima: "+ estacionamiento.horaFin().toString()+ "\n" +
 				"---------------------------" + "\n" +

@@ -7,7 +7,8 @@ public class MensajeFin extends Mensaje{
 	@Override
 	public String mensaje(RegistroEstacionamiento estacionamiento, AppUsuario app) {
 		
-		return 	"Finalizacion de estacionamiento" + "\n" +
+		return 	"#############################" + "\n" +
+				"Finalizacion de estacionamiento" + "\n" +
 				"Hora Inicio: "+ estacionamiento.horaInicio().toString() + "\n" +
 				"Hora Fin: "+ estacionamiento.horaFin().toString()+ "\n" +
 				"Horas estacionadas: "+ estacionamiento.cantidadHoras() + "\n" +

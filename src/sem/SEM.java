@@ -1,7 +1,7 @@
 package sem;
 
+import inspector.Infraccion;
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.Map;
 import entidad.Evento;
 import entidad.Observador;
 import entidad.Sujeto;
-import inspector.Infraccion;
 import puntoDeVenta.Compra;
 
 public class SEM implements Sujeto {
@@ -54,10 +53,6 @@ public class SEM implements Sujeto {
 		notificar(evento);
 	}
 
-	public void nuevoEstacionamiento(int numero, String patente) {
-
-	}
-
 	public boolean estaVigente(String patente) {
 		// TODO Auto-generated method stub
 		RegistroEstacionamiento estacionamiento = this.buscarEstacionamiento(patente);
@@ -79,12 +74,20 @@ public class SEM implements Sujeto {
 	public LocalDateTime getHoraActual() {
 		return this.horaActual;
 	}
-	
+
+	public double getValorHora() {
+		return 40.00;
+	}
+
+	public LocalDateTime horaCierreHoy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public void cargarCredito() {
-		
-		
-	//Evento evento = new Evento("RecargaCredito", Dato);
-	//notificar(evento);
+
+		// Evento evento = new Evento("RecargaCredito", Dato);
+		// notificar(evento);
 	}
 
 	public void agregarInfraccion(Infraccion infraccion) {
@@ -105,15 +108,16 @@ public class SEM implements Sujeto {
 		observadores.remove(o);
 	}
 
-	@Override
 	public void notificar(Evento e) {
-		for (Observador o : observadores) {
-			o.actualizar(e);
-		}
-	}
+        for (Observador o : observadores) {
+            o.actualizar(e);
+        }
+    }
 
 	public List<Observador> getObservadores() {
 		return observadores;
 	}
 
 }
+
+

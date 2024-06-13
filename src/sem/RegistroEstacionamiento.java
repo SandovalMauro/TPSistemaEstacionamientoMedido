@@ -2,6 +2,7 @@ package sem;
 
 import java.time.LocalDateTime;
 
+
 public abstract class RegistroEstacionamiento {
 	private String patente;
 	
@@ -23,5 +24,6 @@ public abstract class RegistroEstacionamiento {
 	public String getPatente() {
 		return this.patente;
 	}
+
 	
 }

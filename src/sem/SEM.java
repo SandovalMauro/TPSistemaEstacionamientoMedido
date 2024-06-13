@@ -26,7 +26,7 @@ public class SEM implements Sujeto {
 	private ArrayList<AppUsuario> usuarios;
 	private double valorHora;
 	private LocalTime horaCierre;
-	
+	private ArrayList<Zona> zonas;
 	
 	
 	public void agregarAppUsuario(AppUsuario app) {
@@ -43,7 +43,12 @@ public class SEM implements Sujeto {
 		this.valorHora = 40.00;
 		this.horaCierre = LocalTime.of(20,00);
 		this.usuarios = new ArrayList<AppUsuario>();
+		this.zonas = new ArrayList<Zona>();
 	}
+	
+	public void agregarZona(Zona zona) {
+		this.zonas.add(zona);	
+		}
 
 	public void finalizarTodosLosEstacionamientos() {
 		if((this.getHoraActual().toLocalTime()).equals(this.horaCierre)) {

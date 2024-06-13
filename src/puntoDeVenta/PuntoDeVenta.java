@@ -23,7 +23,7 @@ public class PuntoDeVenta {
 		
 		this.sem.agregarCompra(new Recarga(this, fecha,credito, app.getNumero()));
 
-		app.cargarSaldo(credito);
+		this.sem.cargarCredito(app, credito);
 	}
 	
 

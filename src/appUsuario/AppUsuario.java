@@ -131,4 +131,8 @@ public class AppUsuario implements MovementSensor {
 		this.state = state;
 	}
 
+	public DrivingState getState() {
+		return state;
+	}
+
 }

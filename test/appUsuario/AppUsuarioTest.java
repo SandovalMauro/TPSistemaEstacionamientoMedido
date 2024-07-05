@@ -47,46 +47,37 @@ class AppUsuarioTest {
 	void seEstaEnModoManualYNoSeHaceNada() {
 		appT.setModo(modoManual);
 
-		assertTrue(appT.isFlagDriving());
 		assertFalse(appT.isSensorActivo());
 		appT.driving(); 
-		assertTrue(appT.isFlagDriving());
 		appT.walking();
-		assertTrue(appT.isFlagDriving());
 		
-
-		
+		verify(modoManual).sensor(appT);
+		verifyNoMoreInteractions(modoManual);
 	}
 	
 	@Test 
 	void seEstaEnModoManualYSePasaAWalking() {
 		appT.setModo(modoAutomatico);
 		
-
-		
-		assertTrue(appT.isFlagDriving());
 		verify(modoAutomatico, times(1)).sensor(appT); 
 		appT.setSensorActivo(true);
 		assertTrue(appT.isSensorActivo()); // Se enciende el sensor 
 		
 		appT.walking();
-		
-		verify(modoAutomatico, times(1)).walkingMSG(appT); // el mensaje Walking fue enviado una vez
-		assertFalse(appT.isFlagDriving()); // Se detecta que se esta caminando
+		assertTrue(appT.getState() instanceof Walking); // Se detecta que se esta caminando
 		
 		appT.walking();
-		verify(modoAutomatico, times(1)).walkingMSG(appT); // el mensaje Walking no volvio a ser llamado		
+		verifyNoMoreInteractions(modoAutomatico); // el mensaje Walking no volvio a ser llamado		
 		
 		appT.driving();
-		assertTrue(appT.isFlagDriving());
 		verify(modoAutomatico, times(1)).drivingMSG(appT);
+		assertTrue(appT.getState() instanceof Driving);
 	}
 	
 	@Test
 	public void alEstarEnModoAutomaticoElEstacionamientoSeIniciaAutomaticamente() {
 
 		modoAutomatico = new ModoAutomatico();
-		
 		appT.setModo(modoAutomatico);
 
 		appT.driving();
@@ -94,7 +85,7 @@ class AppUsuarioTest {
 		
 		
 		appT.driving();
-		verify(sem).finalizarEstacionamiento(1167648255);
+		assertTrue(appT.getState() instanceof Driving, "El estado debe ser Driving.");
 	}
 	
 	

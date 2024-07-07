@@ -1,6 +1,6 @@
 package appUsuario;
 
-public class Walking implements DrivingState {
+public class Walking implements MovementState {
 	@Override
 	public void handleDriving(AppUsuario appUsuario) {
 		appUsuario.drivingMSG();

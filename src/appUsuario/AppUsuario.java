@@ -12,7 +12,7 @@ public class AppUsuario implements MovementSensor {
 	private SEM sem;
 	private ModoApp modo;
 	private String patente;
-	private DrivingState state;
+	private MovementState state;
 	private boolean sensorActivo;
 
 	public AppUsuario(SEM sem, int numero, String patente) {
@@ -127,11 +127,11 @@ public class AppUsuario implements MovementSensor {
 		return this.modo.mensajeDeModo();
 	}
 
-	public void setState(DrivingState state) {
+	public void setState(MovementState state) {
 		this.state = state;
 	}
 
-	public DrivingState getState() {
+	public MovementState getState() {
 		return state;
 	}
 

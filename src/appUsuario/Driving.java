@@ -1,6 +1,6 @@
 package appUsuario;
 
-public class Driving implements DrivingState {
+public class Driving implements MovementState {
 	@Override
 	public void handleDriving(AppUsuario appUsuario) {
 		// Ya está manejando, no hacer nada
